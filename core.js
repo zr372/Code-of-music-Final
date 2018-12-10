@@ -4,10 +4,13 @@ let mUIKeyGrid;
 
 // let mChromaticScale = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
 let mRootMapToKeyid = {'c':1, 'c#':1,'db':2,'d':2,'d#':2,'eb':3,'e':3,'f':4,'f#':4,'gb':5,'g':5,'g#':5,'ab':6,'a':6,'a#':6,'bb':7,'b':7}
-let keyMapToKeyGrid = {'`':'key-1','1':'key-2','2':'key-3','3':'key-4','4':'key-5','5':'key-6','6':'key-7','7':'key-8','8':'key-9','9':'key-10','0':'key-11','-':'key-12','=':'key-13','Backspace':'key-14'}
+let keyMapToKeyGrid = {'`':'key-1','1':'key-2','2':'key-3','3':'key-4','4':'key-5','5':'key-6','6':'key-7','7':'key-8','8':'key-9','9':'key-10','0':'key-11','-':'key-12','=':'key-13','Backspace':'key-14',
+                       'q':'key-1','w':'key-2','e':'key-3','r':'key-4','t':'key-5','y':'key-6','u':'key-7','i':'key-8','o':'key-9','p':'key-10','[':'key-11',']':'key-12','=':'key-13','Backspace':'key-14',
+                       '':'key-1','s':'key-2','':'key-3','d':'key-4','':'key-5','f':'key-6','':'key-7','g':'key-8','':'key-9','h':'key-10','':'key-11','j':'key-12','':'key-13','k':'key-14',
+                       'z':'key-1','':'key-2','x':'key-3','':'key-4','c':'key-5','':'key-6','v':'key-7','':'key-8','b':'key-9','':'key-10','n':'key-11','':'key-12','m':'key-13','':'key-14',}
 let mMasterKeyScale = [];
 
-
+let song = 3
 
 
 let cM  = ['c','d','e','f','g','a','b'];
@@ -19,13 +22,12 @@ let bM = ['b','c#','d#','e','f#','g#','a#']
 // assign the grid to that eq scale
 
 
-let mPlayer = new Tone.Player("sound/Manha De Carnaval (Black Orpheus) Rhodes.wav").toMaster()
-
-
+let mPlayer1 = new Tone.Player("sound/Manha De Carnaval (Black Orpheus) Rhodes.wav").toMaster()
+let mPlayer2 = new Tone.Player("sound/Corcovado (Quiet Nights Of Quiet Stars).wav").toMaster()
+let mPlayer3 = new Tone.Player("sound/C-Jam Blues.wav").toMaster()
 
 let mScaleSequence;
 let mChordSequence;
-
 
 
 
@@ -75,10 +77,10 @@ $(document).ready(function(){
     // mMasterKeyScale = getGridMapFromScale(aHm);
     // getGridMapFromScale(dHm);
     // getGridMapFromScale(bM);
-    initializeSequences();
+    initializeSequences(song);
     initializeEventHandler();
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
-
+    console.log(teoria.note('a').scale(['P1','M2','M3','P4','P5','m6','M7']))
 
 });
 
@@ -96,7 +98,7 @@ let keyIsDown = {}
       if(keyIsDown[event.key] === false) return;
       keyIsDown[event.key] = false;
       // $(keyMapToKeyGrid[event.key]).animate();
-      console.log(event.key,keyMapToKeyGrid[event.key]);
+      // console.log(event.key,keyMapToKeyGrid[event.key]);
       notePressed(keyMapToKeyGrid[event.key]);$('#'+keyMapToKeyGrid[event.key]).addClass('key-pressed')
     },
 
@@ -105,21 +107,25 @@ let keyIsDown = {}
 
       $('#'+keyMapToKeyGrid[event.key]).removeClass('key-pressed');
       keyIsDown[event.key] = true;
-      console.log(event.key,keyMapToKeyGrid[event.key],keyIsDown);
+      // console.log(event.key,keyMapToKeyGrid[event.key],keyIsDown);
     }
 });
 
 
 }
 
-function initializeSequences(){
+function initializeSequences(song){
 
   console.log("INIT SEQ");
+  if (song == 1)
+    Tone.Transport.bpm.value = 140;
+  else if (song == 2)
+    Tone.Transport.bpm.value = 180;
+  else if (song == 3)
+    Tone.Transport.bpm.value = 160;
 
-  Tone.Transport.bpm.value = 140;
-
-  let chords = initialize_chords();
-  let scales = initialize_scales();
+  let chords = initialize_chords(song);
+  let scales = initialize_scales(song);
   let chordsForHint = chords.slice(1,chords.length)
   // console.log(chordsForHint)
   mScaleSequence = new Tone.Sequence(handleScaleChange, scales,"1n");
@@ -168,10 +174,10 @@ function handleChordChange(time,chordName){
 
 function handleHintedNotesChange(time,chordName){
   if(chordName === null)return;
-  console.log("Chord change. Chords:  " +chordName);
+  // console.log("Chord change. Chords:  " +chordName);
 
   let chordNotes = teoria.chord(chordName).simple();
-  console.log("CHORD NOTES: "+chordNotes)
+  // console.log("CHORD NOTES: "+chordNotes)
 
   let highlightedNotes = [];
   for(let i = 0; i<1; i++){
@@ -181,17 +187,17 @@ function handleHintedNotesChange(time,chordName){
   }
   let indexes = getChordNoteIndexFromAlphabet(highlightedNotes);
 
-  mUIKeyGrid.children().each(function(index){
-    console.log("REMOVING CLASS");
-      $(this).removeClass("key-hinted");
-  });
-
-  indexes.forEach(index=>{
-
-      let id = "#key-"+(index+1);
-      console.log("ID in update: "+id);
-      $(id).addClass('key-hinted');
-    });
+  // mUIKeyGrid.children().each(function(index){
+  //   console.log("REMOVING CLASS");
+  //     $(this).removeClass("key-hinted");
+  // });
+  //
+  // indexes.forEach(index=>{
+  //
+  //     let id = "#key-"+(index+1);
+  //     console.log("ID in update: "+id);
+  //     $(id).addClass('key-hinted');
+  //   });
 }
 
 function updateKeysToMatchChordInScaleHinted(indexes){
@@ -202,18 +208,18 @@ function updateKeysToMatchChordInScaleHinted(indexes){
 
 
 
-
-  mUIKeyGrid.children().each(function(index){
-    console.log("REMOVING CLASS");
-      $(this).removeClass("key-hinted-now");
-  });
-
-  indexes.forEach(index=>{
-
-      let id = "#key-"+(index+1);
-      console.log("ID in update: "+id);
-      $(id).addClass('key-hinted-now');
-    });
+  //
+  // mUIKeyGrid.children().each(function(index){
+  //   console.log("REMOVING CLASS");
+  //     $(this).removeClass("key-hinted-now");
+  // });
+  //
+  // indexes.forEach(index=>{
+  //
+  //     let id = "#key-"+(index+1);
+  //     console.log("ID in update: "+id);
+  //     $(id).addClass('key-hinted-now');
+  //   });
 
 
 
@@ -221,18 +227,27 @@ function updateKeysToMatchChordInScaleHinted(indexes){
 }
 
 function notePressed(id){
-    console.log(`ID: ${id}`);
+    // console.log(`ID: ${id}`);
 
     let keyNumber  = id.split("-")[1];
     let note = mMasterKeyScale[keyNumber-1];
-    console.log(`note to be played ${note}`);
+    // console.log(`note to be played ${note}`);
     mPiano.triggerAttackRelease(note,"2n");
 
 
 }
 
-function play(){
-  mPlayer.start()
+function play(song){
+  console.log('look here '+song)
+  if (song == 1){
+    mPlayer1.start()
+  }
+  else if (song == 2){
+    mPlayer2.start()
+  }
+  else if (song == 3){
+    mPlayer3.start()
+  }
   console.log("Play");
 
   Tone.Transport.start();
@@ -243,14 +258,22 @@ function play(){
 
 }
 
-function stop(){
+function stop(song){
 
   mUIKeyGrid.children().each(function(index){
     console.log("REMOVING CLASS");
       $(this).removeClass("key-hinted");
   });
 
-  mPlayer.stop()
+  if (song == 1){
+    mPlayer1.stop()
+  }
+  else if (song == 2){
+    mPlayer2.stop()
+  }
+  else if (song == 3){
+    mPlayer3.stop()
+  }
   console.log("Stop");
   Tone.Transport.stop();
   mScaleSequence.stop();
