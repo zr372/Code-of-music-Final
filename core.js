@@ -80,9 +80,14 @@ $(document).ready(function(){
     initializeSequences(song);
     initializeEventHandler();
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
-    console.log(teoria.note('a').scale(['P1','M2','M3','P4','P5','m6','M7']))
 
 });
+
+function chooseSong(songName){
+
+  song = songName
+  initializeSequences(song)
+}
 
 function initializeEventHandler(){
   $("#key-grid").children().on({
@@ -239,6 +244,9 @@ function notePressed(id){
 
 function play(song){
   console.log('look here '+song)
+  stop(1)
+  stop(2)
+  stop(3)
   if (song == 1){
     mPlayer1.start()
   }

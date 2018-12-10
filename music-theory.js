@@ -362,7 +362,7 @@ function initialize_scales(song){
   }
 }
 
-initialize_scales()
+
 
 
 function getGridMapFromScale(scale){
