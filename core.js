@@ -80,7 +80,7 @@ $(document).ready(function(){
     initializeSequences(song);
     initializeEventHandler();
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
-
+    console.log('ready')
 });
 
 function chooseSong(songName){
