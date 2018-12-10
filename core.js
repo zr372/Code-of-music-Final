@@ -10,7 +10,7 @@ let keyMapToKeyGrid = {'`':'key-1','1':'key-2','2':'key-3','3':'key-4','4':'key-
                        'z':'key-1','':'key-2','x':'key-3','':'key-4','c':'key-5','':'key-6','v':'key-7','':'key-8','b':'key-9','':'key-10','n':'key-11','':'key-12','m':'key-13','':'key-14',}
 let mMasterKeyScale = [];
 
-let song = 3
+let song = 1
 
 
 let cM  = ['c','d','e','f','g','a','b'];
