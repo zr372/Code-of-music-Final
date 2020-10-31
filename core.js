@@ -29,7 +29,7 @@ let mPlayer3 = new Tone.Player("sound/C-Jam Blues.wav").toMaster()
 let mScaleSequence;
 let mChordSequence;
 
-
+Tone.context.latencyHint = "fastest"
 
 
 
