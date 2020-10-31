@@ -30,7 +30,7 @@ let mScaleSequence;
 let mChordSequence;
 
 Tone.context.latencyHint = "fastest"
-
+Tone.context.lookAhead = 0
 
 
 
