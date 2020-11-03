@@ -145,7 +145,8 @@ function initialize_scales(song){
   let harmonicmajor = ['P1','M2','M3','P4','P5','m6','M7']
   let hh = ['P1','m2','m3','M3','d5','P5','M6','m7']
   let majorblues = ['P1','M2','m3','M3','P5','M6']
-  let raw_scales1 = [,
+  import {raw_scales1,raw_scales2,raw_scales3} from 'piece_scales.js'
+  //let raw_scales1 = [,
     //first round
 
     // Am| Bm7b5 E7b9| Am| Bm7b5 E7b9
@@ -293,7 +294,7 @@ function initialize_scales(song){
 
 
   ];
-  let raw_scales2 = [,,
+  //let raw_scales2 = [,,
     'd mixolydian', ,['c',harmonicmajor], ,
     'g dorian','c mixolydian','f major', ,
 
@@ -335,7 +336,7 @@ function initialize_scales(song){
     'd dorian','g mixolydian','e dorian','bb melodicminor',
     'd dorian','g mixolydian','c major', ,
   ];
-  let raw_scales3 = [,,
+  //let raw_scales3 = [,,
     ['c',majorblues], , , ,
     'c blues', , , ,
     'c minorpentatonic', ,'c blues',,
