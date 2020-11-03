@@ -304,7 +304,7 @@ function initialize_scales(song){
     'g dorian','c mixolydian','f major', ,
 
     'f dorian', 'bb mixolydian','a minor', ,
-    'd dorian','g mixolydian','c major','bb melodicminor',
+    'd dorian','g mixolydian','e dorian','bb melodicminor',
     'd dorian','g mixolydian','c major', ,
 
     //--
@@ -318,7 +318,7 @@ function initialize_scales(song){
     'g dorian','c mixolydian','f major', ,
 
     'f dorian', 'bb mixolydian','a minor', ,
-    'd dorian','g mixolydian','c major','bb melodicminor',
+    'd dorian','g mixolydian','e dorian','bb melodicminor',
     'd dorian','g mixolydian','c major', ,
 
     //--
@@ -332,7 +332,7 @@ function initialize_scales(song){
     'g dorian','c mixolydian','f major', ,
 
     'f dorian', 'bb mixolydian','a minor', ,
-    'd dorian','g mixolydian','c major','bb melodicminor',
+    'd dorian','g mixolydian','e dorian','bb melodicminor',
     'd dorian','g mixolydian','c major', ,
   ];
   let raw_scales3 = [,,
