@@ -32,7 +32,7 @@ let mChordSequence;
 Tone.context.latencyHint = "fastest"
 Tone.context.lookAhead = 0
 
-
+import raw_scales from 'piece_scales.js'
 
 
 
@@ -79,6 +79,9 @@ $(document).ready(function(){
     // getGridMapFromScale(bM);
     initializeSequences(song);
     initializeEventHandler();
+    for (let key in raw_scales) {
+      $('#song-selector').append('<option value=' + key + '>' + key + '</option>');
+    };
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
     console.log('ready')
 });

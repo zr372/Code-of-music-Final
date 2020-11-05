@@ -146,6 +146,7 @@ let raw_scales1 = [,
 
 
 ];
+
 let raw_scales2 = [,,
   'd mixolydian', ,['c',harmonicmajor], ,
   'g dorian','c mixolydian','f major', ,
@@ -188,6 +189,7 @@ let raw_scales2 = [,,
   'd dorian','g mixolydian','e dorian','bb melodicminor',
   'd dorian','g mixolydian','c major', ,
 ];
+
 let raw_scales3 = [,,
   ['c',majorblues], , , ,
   'c blues', , , ,
@@ -200,4 +202,10 @@ let raw_scales3 = [,,
   ['c',majorblues], , , ,
   'c blues', , , ,
   'c minorpentatonic', ,'c blues',,
-]
+];
+
+let raw_scales = {
+  'song1': raw_scales1,
+  'song2': raw_scales2,
+  'song3': raw_scales3,
+  }
