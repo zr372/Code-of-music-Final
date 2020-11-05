@@ -32,7 +32,6 @@ let mChordSequence;
 Tone.context.latencyHint = "fastest"
 Tone.context.lookAhead = 0
 
-import raw_scales from 'piece_scales.js'
 
 
 
