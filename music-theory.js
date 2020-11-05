@@ -145,7 +145,6 @@ function initialize_scales(song){
   let harmonicmajor = ['P1','M2','M3','P4','P5','m6','M7']
   let hh = ['P1','m2','m3','M3','d5','P5','M6','m7']
   let majorblues = ['P1','M2','m3','M3','P5','M6']
-  import raw_scales from 'piece_scales.js'
 
   raw_scale_selected = raw_scales[song]
   usable_scale = rawScalesToTeoriaScales(completeArray(raw_scale_selected))
