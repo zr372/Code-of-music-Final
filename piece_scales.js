@@ -98,11 +98,8 @@ let raw_scales1 = [,
 
   //Dm7 Am7| Dm7 Am7| Dm7 Am7| Am
   'd dorian','a minor','d dorian','a minor',
-
-
-
-
 ];
+print(raw_scales1.length)
 
 let raw_scales2 = [,,
   'd mixolydian', ,['c',harmonicmajor], ,
