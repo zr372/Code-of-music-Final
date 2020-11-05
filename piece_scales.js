@@ -1,147 +1,104 @@
+let harmonicmajor = ['P1','M2','M3','P4','P5','m6','M7']
+let hh = ['P1','m2','m3','M3','d5','P5','M6','m7']
+let majorblues = ['P1','M2','m3','M3','P5','M6']
+
 let raw_scales1 = [,
   //first round
 
   // Am| Bm7b5 E7b9| Am| Bm7b5 E7b9
-  a.scale('minor'),
-  a.scale('harmonicminor'),
-  a.scale('minor'),
-  a.scale('harmonicminor'),
+  'a minor','a harmonicminor','a minor','a harmonicminor',
+
   // Am| Dm7 G7| CM7| A7b9
-  a.scale('harmonicminor'),
-  c.scale('major'),
-  c.scale('major'),
-  d.scale('harmonicminor'),
+  'a harmonicminor','c major',,'a harmonicminor',
+
   // Dm7| G7| CM7| FM7
-  d.scale('dorian'),
-  d.scale('dorian'),
-  c.scale('major'),
-  c.scale('major'),
+  'd dorian',,'c major',,
+
   // Bm7b5| E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
 
   //___
 
   //Am| Bm7b5 E7b9| Am| Am
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  //Em7b5| A7b9| Dm
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
+  ,,,,
+  //Em7b5| A7b9| Dm |
+  'd harmonicminor',,,,
   //Dm7| Bm7b5 E7b9| Am Am7/G| FM7
-  d.scale('dorian'),
-  a.scale('harmonicminor'),
-  f.scale('lydian'),
-  f.scale('lydian'),
+  'd dorian','a harmonicminor','f lydian',,
+
   //Bm7| E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
+
 
 
   //second round
 
   // Am| Bm7b5 E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a minor','a harmonicminor','a minor','a harmonicminor',
+
   // Am| Dm7 G7| CM7| A7b9
-  a.scale('harmonicminor'),
-  c.scale('major'),
-  c.scale('major'),
-  d.scale('harmonicminor'),
+  'a harmonicminor','c major',,'a harmonicminor',
+
   // Dm7| G7| CM7| FM7
-  d.scale('dorian'),
-  d.scale('dorian'),
-  c.scale('major'),
-  c.scale('major'),
+  'd dorian',,'c major',,
+
   // Bm7b5| E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
 
   //___
 
   //Am| Bm7b5 E7b9| Am| Am
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  //Em7b5| A7b9| Dm
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
+  ,,,,
+  //Em7b5| A7b9| Dm |
+  'd harmonicminor',,,,
   //Dm7| Bm7b5 E7b9| Am Am7/G| FM7
-  d.scale('dorian'),
-  a.scale('harmonicminor'),
-  f.scale('lydian'),
-  f.scale('lydian'),
+  'd dorian','a harmonicminor','f lydian',,
+
   //Bm7| E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
 
   //third round
 
   // Am| Bm7b5 E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a minor','a harmonicminor','a minor','a harmonicminor',
+
   // Am| Dm7 G7| CM7| A7b9
-  a.scale('harmonicminor'),
-  c.scale('major'),
-  c.scale('major'),
-  d.scale('harmonicminor'),
+  'a harmonicminor','c major',,'a harmonicminor',
+
   // Dm7| G7| CM7| FM7
-  d.scale('dorian'),
-  d.scale('dorian'),
-  c.scale('major'),
-  c.scale('major'),
+  'd dorian',,'c major',,
+
   // Bm7b5| E7b9| Am| Bm7b5 E7b9
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
+
+  //___
+
+  // Am| Bm7b5 E7b9| Am| Bm7b5 E7b9
+  'a minor','a harmonicminor','a minor','a harmonicminor',
+
+  // Am| Dm7 G7| CM7| A7b9
+  'a harmonicminor','c major',,'a harmonicminor',
+
+  // Dm7| G7| CM7| FM7
+  'd dorian',,'c major',,
+
+  // Bm7b5| E7b9| Am| Bm7b5 E7b9
+  'a harmonicminor',,,,
 
   //___
 
   //Am| Bm7b5 E7b9| Am| Am
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  //Em7b5| A7b9| Dm
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
-  d.scale('harmonicminor'),
+  ,,,,
+  //Em7b5| A7b9| Dm||
+  'd harmonicminor',,,,
   //Dm7| Bm7b5 E7b9| Am Am7/G| FM7
-  d.scale('dorian'),
-  a.scale('harmonicminor'),
-  f.scale('lydian'),
-  f.scale('lydian'),
+  'd dorian','a harmonicminor','f lydian',,
   //Bm7| E7b9| Am| Am
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
-  a.scale('harmonicminor'),
+  'a harmonicminor',,,,
+
   //Dm7 Am7| Dm7 Am7| Dm7 Am7| Am
-  a.scale('dorian'),
-  a.scale('minor'),
-  a.scale('dorian'),
-  a.scale('minor'),
+  'd dorian','a minor','d dorian','a minor',
+
 
 
 
