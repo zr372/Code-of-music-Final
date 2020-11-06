@@ -10,7 +10,7 @@ let keyMapToKeyGrid = {'`':'key-1','1':'key-2','2':'key-3','3':'key-4','4':'key-
                        'z':'key-1','':'key-2','x':'key-3','':'key-4','c':'key-5','':'key-6','v':'key-7','':'key-8','b':'key-9','':'key-10','n':'key-11','':'key-12','m':'key-13','':'key-14',}
 let mMasterKeyScale = [];
 
-let song = 1
+let song = all_pieces[0]
 
 
 let cM  = ['c','d','e','f','g','a','b'];
@@ -22,10 +22,8 @@ let bM = ['b','c#','d#','e','f#','g#','a#']
 // assign the grid to that eq scale
 
 
-let mPlayer1 = new Tone.Player("sound/Manha De Carnaval (Black Orpheus) Rhodes.wav").toMaster()
-let mPlayer2 = new Tone.Player("sound/Corcovado (Quiet Nights Of Quiet Stars).wav").toMaster()
-let mPlayer3 = new Tone.Player("sound/C-Jam Blues.wav").toMaster()
 
+let mPlayer;
 let mScaleSequence;
 let mChordSequence;
 
@@ -78,16 +76,17 @@ $(document).ready(function(){
     // getGridMapFromScale(bM);
     initializeSequences(song);
     initializeEventHandler();
-    for (let key in raw_scales) {
-      $('#song-selector').append('<option value=' + key + '>' + key + '</option>');
+    all_pieces.forEach(addselection);
+    function addselection(element,index,array){
+      console.log('adding selection: ',element)
+      $('#song-selector').append('<option value=' + index + '>' + element.name + '</option>');
     };
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
     console.log('ready')
 });
 
-function chooseSong(songName){
-
-  song = songName
+function chooseSong(index){
+  song = all_pieces[index]
   initializeSequences(song)
 }
 
@@ -124,26 +123,25 @@ let keyIsDown = {}
 function initializeSequences(song){
 
   console.log("INIT SEQ");
-  if (song == 1)
-    Tone.Transport.bpm.value = 140;
-  else if (song == 2)
-    Tone.Transport.bpm.value = 180;
-  else if (song == 3)
-    Tone.Transport.bpm.value = 160;
 
-  let chords = initialize_chords(song);
-  let scales = initialize_scales(song);
-  let chordsForHint = chords.slice(1,chords.length)
+  Tone.Transport.bpm.value=song.bpm
+
+  //let chords = initialize_chords(song);
+  //let scales = initialize_scales(song);
+  //let chordsForHint = chords.slice(1,chords.length)
+  ready_chords = initialize_chords(song);
+  ready_scales = initialize_scales(song);
+  console.log(ready_chords,ready_scales)
   // console.log(chordsForHint)
-  mScaleSequence = new Tone.Sequence(handleScaleChange, scales,"1n");
-  mChordSequence = new Tone.Sequence(handleChordChange, chords,"1n");
-  mChordForHintSequence = new Tone.Sequence(handleHintedNotesChange, chordsForHint,"1n");
+  mChordSequence = new Tone.Sequence(handleChordChange, ready_chords,"1n");
+  mScaleSequence = new Tone.Sequence(handleScaleChange, ready_scales,"1n");
+  //mChordForHintSequence = new Tone.Sequence(handleHintedNotesChange, chordsForHint,"1n");
 
 }
 
 function handleScaleChange(time,scale){
   if(scale === null)return;
-  console.log(scale)
+  console.log('current scale: ',scale)
   console.log("Scale Change. Scale:  "+ scale.simple());
 
   mMasterKeyScale = getGridMapFromScale(scale.simple());
@@ -152,6 +150,8 @@ function handleScaleChange(time,scale){
 }
 
 function handleChordChange(time,chordName){
+  console.log('current chord: '+chordName)
+
   if(chordName === null)return;
   console.log("Chord change. Chords:  " +chordName);
 
@@ -245,25 +245,21 @@ function notePressed(id){
 }
 
 function play(song){
-  console.log('look here '+song)
-  stop(1)
-  stop(2)
-  stop(3)
-  if (song == 1){
-    mPlayer1.start()
-  }
-  else if (song == 2){
-    mPlayer2.start()
-  }
-  else if (song == 3){
-    mPlayer3.start()
-  }
+  console.log('song.name: '+song.name)
+  console.log('song.music_dir: '+song.music_dir)
+  // stop(1)
+  //stop(2)
+  //stop(3)
+  mPlayer = new Tone.Player(song.music_dir).toMaster()
+  mPlayer.autostart=true;
+  //mPlayer.start()
   console.log("Play");
 
   Tone.Transport.start();
-  mScaleSequence.start();
   mChordSequence.start();
-  mChordForHintSequence.start();
+  mScaleSequence.start();
+
+  //mChordForHintSequence.start();
 
 
 }
@@ -275,18 +271,10 @@ function stop(song){
       $(this).removeClass("key-hinted");
   });
 
-  if (song == 1){
-    mPlayer1.stop()
-  }
-  else if (song == 2){
-    mPlayer2.stop()
-  }
-  else if (song == 3){
-    mPlayer3.stop()
-  }
+  mPlayer.stop()
   console.log("Stop");
   Tone.Transport.stop();
   mScaleSequence.stop();
   mChordSequence.stop();
-  mChordForHintSequence.stop();
+  //mChordForHintSequence.stop();
 }

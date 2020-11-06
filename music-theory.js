@@ -9,6 +9,7 @@ function completeArray(array){
   }
   return array
 }
+
 function rawScalesToTeoriaScales(raw_scales){
   for (i=2;i<raw_scales.length;i++){
     if (typeof(raw_scales[i]) == 'string'){
@@ -27,109 +28,8 @@ function rawScalesToTeoriaScales(raw_scales){
 
 
 function initialize_chords(song){
-  let chords1 = [,
-    //first round
-    "Am",     ["Bm7b5", "E7b9"], "Am",          ["Bm7b5", "E7b9"],
-    "Am",     ["Dm7",   "G7"],   "CM7",          "A7b9",
-    "Dm7",     "G7",             "CM7",          "FM7",
-    "Bm7b5",   "E7b9",           "Am",          ["Bm7b5", "E7b9"],
-
-    "Am",     ["Bm7b5", "E7b9"], "Am",           "Am",
-    "Em7b5",   "A7b9",           "Dm",           "Dm",
-    "Dm7",    ["Bm7b5", "E7b9"],["Am", "Am7/G"], "FM7",
-    "Bm7b5",   "E7b9",           "Am",          ["Bm7b5", "E7b9"],
-
-
-    //second round
-
-    "Am",     ["Bm7b5", "E7b9"], "Am",          ["Bm7b5", "E7b9"],
-    "Am",     ["Dm7",   "G7"],   "CM7",          "A7b9",
-    "Dm7",     "G7",             "CM7",          "FM7",
-    "Bm7b5",   "E7b9",           "Am",          ["Bm7b5", "E7b9"],
-
-    "Am",     ["Bm7b5", "E7b9"], "Am",           "Am",
-    "Em7b5",   "A7b9",           "Dm",           "Dm",
-    "Dm7",    ["Bm7b5", "E7b9"],["Am", "Am7/G"], "FM7",
-    "Bm7b5",   "E7b9",           "Am",          ["Bm7b5", "E7b9"],
-
-
-    //third round
-
-    "Am",     ["Bm7b5", "E7b9"], "Am",          ["Bm7b5", "E7b9"],
-    "Am",     ["Dm7",   "G7"],   "CM7",          "A7b9",
-    "Dm7",     "G7",             "CM7",          "FM7",
-    "Bm7b5",   "E7b9",           "Am",          ["Bm7b5", "E7b9"],
-
-    "Am",     ["Bm7b5", "E7b9"], "Am",           "Am",
-    "Em7b5",   "A7b9",           "Dm",           "Dm",
-    "Dm7",    ["Bm7b5", "E7b9"],["Am", "Am7/G"], "FM7",
-    "Bm7b5",   "E7b9",           "Am",           "A-",
-
-   ["Dm7","Am7"],["Dm7","Am7"], ["Dm7","Em7"],   "Am7",
-  ]
-  let chords2 = [,,
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','A7b13',
-    'D7', ,'Dm7','Abdim7',
-
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','Am7',
-    'Dm7','G7','Em7','A7',
-    'Dm7','G7','C6', ,
-    //---
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','A7b13',
-    'D7', ,'Dm7','Abdim7',
-
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','Am7',
-    'Dm7','G7','Em7','A7',
-    'Dm7','G7','C6', ,
-    //---
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','A7b13',
-    'D7', ,'Dm7','Abdim7',
-
-    'D9', ,'Abdim7', ,
-    'Gm7','C7sus',['Fdim','FMaj7'],'FMaj7',
-
-    'Fm7','Bb7','Em7','Am7',
-    'Dm7','G7','Em7','A7',
-    'Dm7','G7','C6', ,
-  ]
-  let chords3 = [,,
-    'C7', , , ,
-    'F7', , ,'C7',
-    'G7', , ,'C7',
-
-    'C7', , , ,
-    'F7', , ,'C7',
-    'G7', , ,'C7',
-
-    'C7', , , ,
-    'F7', , ,'C7',
-    'G7', , ,'C7',
-  ]
-
-  if (song == 1) {
-    return completeArray(chords1);
-  }
-  else if (song == 2) {
-    return completeArray(chords2)
-  }
-  else if (song == 3){
-    return completeArray(chords3)
-  }
+  console.log('song chords',song.chords)
+  return completeArray(song.chords)
 }
 
 
@@ -142,11 +42,11 @@ function initialize_scales(song){
   let a =teoria.note('a');
   let b =teoria.note('b');
 
-  let harmonicmajor = ['P1','M2','M3','P4','P5','m6','M7']
-  let hh = ['P1','m2','m3','M3','d5','P5','M6','m7']
-  let majorblues = ['P1','M2','m3','M3','P5','M6']
+  //let harmonicmajor = ['P1','M2','M3','P4','P5','m6','M7']
+  //let hh = ['P1','m2','m3','M3','d5','P5','M6','m7']
+  //let majorblues = ['P1','M2','m3','M3','P5','M6']
 
-  raw_scale_selected = raw_scales[song]
+  raw_scale_selected = song.scales
   usable_scale = rawScalesToTeoriaScales(completeArray(raw_scale_selected))
   return usable_scale
 }
