@@ -10,13 +10,13 @@ let keyMapToKeyGrid = {'`':'key-1','1':'key-2','2':'key-3','3':'key-4','4':'key-
                        'z':'key-1','':'key-2','x':'key-3','':'key-4','c':'key-5','':'key-6','v':'key-7','':'key-8','b':'key-9','':'key-10','n':'key-11','':'key-12','m':'key-13','':'key-14',}
 let mMasterKeyScale = [];
 
-let song = all_pieces[0]
+let song;
 
 
 let cM  = ['c','d','e','f','g','a','b'];
 let aHm = ['a','b','c','d','e','f','g#'];
-let dHm = ['d','e','f','g','a','bb','c#']
-let bM = ['b','c#','d#','e','f#','g#','a#']
+let dHm = ['d','e','f','g','a','bb','c#'];
+let bM = ['b','c#','d#','e','f#','g#','a#'];
 
 // find index of root note
 // assign the grid to that eq scale
@@ -74,13 +74,19 @@ $(document).ready(function(){
     // mMasterKeyScale = getGridMapFromScale(aHm);
     // getGridMapFromScale(dHm);
     // getGridMapFromScale(bM);
-    initializeSequences(song);
+    //initializeSequences(song);
     initializeEventHandler();
     all_pieces.forEach(addselection);
     function addselection(element,index,array){
       console.log('adding selection: ',element)
-      $('#song-selector').append('<option value=' + index + '>' + element.name + '</option>');
+      var selection_text
+      if (index==0){$('#song-selector').append('<option value=' + index +' '+ 'selected'+'>' + element.name + '</option>');}
+      else {
+        $('#song-selector').append('<option value=' + index +'>' + element.name + '</option>');
+      }
     };
+    console.log(all_pieces[0])
+    chooseSong(0)
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
     console.log('ready')
 });
@@ -145,6 +151,12 @@ function handleScaleChange(time,scale){
   console.log("Scale Change. Scale:  "+ scale.simple());
 
   mMasterKeyScale = getGridMapFromScale(scale.simple());
+
+  mUIKeyGrid.children().each(function(index){
+    notetext_to_show = mMasterKeyScale[index]
+    notetext_to_show = notetext_to_show.charAt(0).toUpperCase() + notetext_to_show.slice(1)
+    $(this).text(notetext_to_show);
+  });
 
 
 }
@@ -250,11 +262,14 @@ function play(song){
   // stop(1)
   //stop(2)
   //stop(3)
-  mPlayer = new Tone.Player(song.music_dir).toMaster()
+
+
+
+  mPlayer = new Tone.Player(song.music_dir).toMaster().sync()
   mPlayer.autostart=true;
   //mPlayer.start()
   console.log("Play");
-
+  Tone.Transport.loop = false
   Tone.Transport.start();
   mChordSequence.start();
   mScaleSequence.start();
