@@ -8,16 +8,17 @@ Aiming to bring jazz improvisation experience more accessible to the general pub
 Instead of worrying about playing a “wrong" note, the user can focus on the other aspects of jazz improvisation such as phrasing, rhythm, and motif development.
 
 ## Usage
-Open in Chrome:  https://zr372.github.io/Virtual-improv-keyboard/
+Open in Chrome:  
 
-Press number keys to play the piano.
+https://zr372.github.io/Virtual-improv-keyboard/
 
-There are three selectable song presets with chord and scale changes.
+- Press number keys to play the piano.
+
+- There are three selectable song presets with chord and scale changes.
 
 The audio for the accompaniments are exported from iReal Pro (a jazz improvisation practice app).
 
-## Demo
-
+## Screenshot
 ![alt text][logo]
 
 [logo]: demo/ScreenShot.png
