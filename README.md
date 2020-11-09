@@ -8,7 +8,7 @@ Aiming to bring jazz improvisation experience more accessible to the general pub
 Instead of worrying about playing a “wrong" note, the user can focus on the other aspects of jazz improvisation such as phrasing, rhythm, and motif development.
 
 ## Usage
-Open in Chrome:  
+Open in **Chrome**:  
 
 https://zr372.github.io/Virtual-improv-keyboard/
 
