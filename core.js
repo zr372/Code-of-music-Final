@@ -35,7 +35,6 @@ Tone.context.lookAhead = 0
 
 $(document).ready(function(){
 
-
     mPiano = new Tone.Sampler({
         "C3":"C3.wav",
         "C#3":"Csharp3.wav",
@@ -62,34 +61,45 @@ $(document).ready(function(){
         "A#4":"Asharp4.wav",
         "B4":"B4.wav",
     },null,"sound/").toMaster();
-
     mPiano.volume.value = -13;
 
-
-
     mUIKeyGrid = $("#key-grid");
-
-
     mMasterKeyScale = getGridMapFromScale(aHm);
-    // mMasterKeyScale = getGridMapFromScale(aHm);
-    // getGridMapFromScale(dHm);
-    // getGridMapFromScale(bM);
-    //initializeSequences(song);
+
     initializeEventHandler();
     all_pieces.forEach(addselection);
-    function addselection(element,index,array){
-      console.log('adding selection: ',element)
-      var selection_text
-      if (index==0){$('#song-selector').append('<option value=' + index +' '+ 'selected'+'>' + element.name + '</option>');}
-      else {
-        $('#song-selector').append('<option value=' + index +'>' + element.name + '</option>');
-      }
-    };
     console.log(all_pieces[0])
     chooseSong(0)
     // console.log('new root mapping test: '+ 'c#'+', ' +mRootMapToKeyid['c#'])
-    console.log('ready')
+    checkEverythingReady()
+
 });
+function checkEverythingReady(){
+  things_to_check = [
+    mPiano,
+    mUIKeyGrid,
+    song,
+    mScaleSequence,
+    mChordSequence,
+  ];
+  states_ready = things_to_check.map(x=>typeof(x) != 'undefined')
+  if (states_ready.every(function(i) { return i; })){
+    console.log('ready')
+  }
+  else{
+    console.log('not ready',things_to_check)
+
+  }
+}
+
+function addselection(element,index,array){
+  console.log('adding selection: ',element)
+  var selection_text
+  if (index==0){$('#song-selector').append('<option value=' + index +' '+ 'selected'+'>' + element.name + '</option>');}
+  else {
+    $('#song-selector').append('<option value=' + index +'>' + element.name + '</option>');
+  }
+};
 
 function chooseSong(index){
   song = all_pieces[index]
@@ -259,12 +269,7 @@ function notePressed(id){
 function play(song){
   console.log('song.name: '+song.name)
   console.log('song.music_dir: '+song.music_dir)
-  // stop(1)
-  //stop(2)
-  //stop(3)
-
-
-
+  stop()
   mPlayer = new Tone.Player(song.music_dir).toMaster().sync()
   mPlayer.autostart=true;
   //mPlayer.start()
@@ -273,20 +278,15 @@ function play(song){
   Tone.Transport.start();
   mChordSequence.start();
   mScaleSequence.start();
-
-  //mChordForHintSequence.start();
-
-
 }
 
-function stop(song){
+function stop(){
 
   mUIKeyGrid.children().each(function(index){
     console.log("REMOVING CLASS");
       $(this).removeClass("key-hinted");
   });
-
-  mPlayer.stop()
+  if (typeof(mPlayer) != 'undefined'){mPlayer.stop()}
   console.log("Stop");
   Tone.Transport.stop();
   mScaleSequence.stop();

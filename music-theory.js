@@ -25,13 +25,10 @@ function rawScalesToTeoriaScales(raw_scales){
   return raw_scales
 }
 
-
-
 function initialize_chords(song){
   console.log('song chords',song.chords)
   return completeArray(song.chords)
 }
-
 
 function initialize_scales(song){
   let c =teoria.note('c');
@@ -50,9 +47,6 @@ function initialize_scales(song){
   usable_scale = rawScalesToTeoriaScales(completeArray(raw_scale_selected))
   return usable_scale
 }
-
-
-
 
 function getGridMapFromScale(scale){
 
@@ -102,8 +96,6 @@ function getGridMapFromScale(scale){
     return newScale;
 }
 
-
-
 function getChordNoteIndexFromAlphabet(chordNotes){
 
   // console.log("Chord NOtes from Alphabet");
@@ -115,25 +107,10 @@ function getChordNoteIndexFromAlphabet(chordNotes){
 
   for (let i=0; i<mAlphabet.length; i++){
     for(j=0; j<chordNotes.length; j++){
-
-
         if(chordNotes[j].charAt(0)===mAlphabet[i]){
           indexes.push(i);
         }
-
     }
-
-
-
   }
-
-
-    // console.log("Chord Note Indexes::    "+indexes);
-
-    return indexes;
-
-
-
-
-
+  return indexes;
 }
